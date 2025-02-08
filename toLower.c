@@ -1,22 +1,23 @@
 #include <stdio.h>
 #include <ctype.h>
-
-void convertToLower(char str[]) {
-    int i = 0;
-    while (str[i] != '\0') {
-        str[i] = tolower(str[i]);
-        i++;
-    }
-}
+#include <string.h>
 
 int main() {
-    char str[100];
+    char str[100];  // Declare the string variable
 
+    //Input prompt
     printf("Enter string: ");
-    fgets(str, sizeof(str), stdin);
+    fgets(str, sizeof(str), stdin); 
 
-    convertToLower(str);  // Convert to lowercase
-    printf("Converted: %s\n", str);  // Print the converted string
+    //Remove newline character
+    str[strcspn(str, "\n")] = '\0';
+
+    //Convert to lowercase
+    for (int i = 0; i < strlen(str); i++) {
+        str[i] = tolower(str[i]);
+    }
+
+    printf("Lowercase string: %s\n", str);
 
     return 0;
 }
